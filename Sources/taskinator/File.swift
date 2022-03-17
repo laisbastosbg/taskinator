@@ -14,6 +14,8 @@ struct File {
   init(fileName: String) {
     let fileManager = FileManager.default
     
+    
+    //TODO: create a hidden taskinator folder
     func getDocumentsDiretory() -> URL {
       return fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }

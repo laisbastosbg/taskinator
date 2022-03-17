@@ -1,1 +1,1 @@
-Task.main()
+Taskinator.main()
