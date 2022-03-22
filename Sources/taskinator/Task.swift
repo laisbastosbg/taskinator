@@ -1,14 +1,7 @@
-//
-//  File.swift
-//  
-//
-//  Created by Lais Godinho on 15/03/22.
-//
-
 import ArgumentParser
 import Foundation
 
-struct Task: ParsableCommand {
+class Task {
   
   func getTasks(_ file: File) -> [String] {
     let tasks = file.readContentsOf()
@@ -41,17 +34,21 @@ struct Task: ParsableCommand {
       if(isTaskFinished(task)) {
         var finishedTask = task
         finishedTask.remove(at: finishedTask.startIndex)
-        print("(\(i)) ☑️   \(finishedTask)")
+        print("\(i). ☑️   \(finishedTask)")
       } else {
-        print("(\(i)) ▫️   \(task)")
+        print("\(i). ▫️   \(task)")
       }
       
     }
     
-      print("\n")
+    print("\n")
   }
   
-  func finishTask(index: Int, _ tasksFromFile: [String], _ file: File) {
+  func finishTask(index: Int, _ tasksFromFile: [String], _ file: File) -> String {
+    
+    if index >= tasksFromFile.count {
+      return "Index out of range"
+    }
     var tasks = tasksFromFile
     let task = tasks[index]
     
@@ -63,8 +60,10 @@ struct Task: ParsableCommand {
       let stringTasks = tasks.joined(separator: "\n")
       
       file.overwrite(text: stringTasks)
+      return "ok"
+    } else {
+      return "Essa tarefa já foi feita."
     }
-    
   }
   
   func addTask(file: File, task: String) {

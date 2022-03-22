@@ -1,19 +1,11 @@
-//
-//  File.swift
-//  
-//
-//  Created by Lais Godinho on 15/03/22.
-//
-
 import Foundation
 
-struct File {
+class File {
   var fileURL: URL
   var fileName: String
   
   init(fileName: String) {
     let fileManager = FileManager.default
-    
     
     //TODO: create a hidden taskinator folder
     func getDocumentsDiretory() -> URL {

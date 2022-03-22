@@ -1,4 +1,3 @@
-
 import Foundation
 import ArgumentParser
 
@@ -24,7 +23,8 @@ struct Taskinator: ParsableCommand {
     }
     
     if self.finish != nil {
-      task.finishTask(index: self.finish!, tasks, file)
+      let result = task.finishTask(index: self.finish!, tasks, file)
+      print(result)
     }
     
     if self.delete != nil {
