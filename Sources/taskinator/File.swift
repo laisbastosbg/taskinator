@@ -7,18 +7,25 @@ class File {
   init(fileName: String) {
     let fileManager = FileManager.default
     
-    //TODO: create a hidden taskinator folder
     func getDocumentsDiretory() -> URL {
       return fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
+
+    let programFolderURL = getDocumentsDiretory()
+      .appendingPathComponent(".taskinator")
     
-    self.fileURL = getDocumentsDiretory()
+    self.fileURL = programFolderURL
       .appendingPathComponent(fileName)
     
     do {
       _ = try String(contentsOf: self.fileURL)
     } catch {
-      fileManager.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
+      do {
+        _ = try fileManager.createDirectory(at: programFolderURL, withIntermediateDirectories: true, attributes: nil)
+        fileManager.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
+      } catch {
+        print("Could not create program folder")
+      }
     }
     
     self.fileName = fileName
@@ -29,7 +36,7 @@ class File {
       let tasks = try String(contentsOf: self.fileURL)
       return tasks
     } catch {
-      return "Não foi possível ler o conteúdo do arquivo"
+      return "Unable to read file content"
     }
   }
   
@@ -42,7 +49,7 @@ class File {
       try content.write(to: fileURL, atomically: true, encoding: .utf8)
       return content
     } catch {
-      return "Não foi possível adicionar ao arquivo"
+      return "Unable to append content to file"
     }
   }
   
@@ -50,7 +57,7 @@ class File {
     do {
       try text.write(to: fileURL, atomically: true, encoding: .utf8)
     } catch {
-      print("Não foi possível sobrescrever o arquivo")
+      print("Unable to overwrite file")
     }
   }
 }

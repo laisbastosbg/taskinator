@@ -62,24 +62,31 @@ class Task {
       file.overwrite(text: stringTasks)
       return "ok"
     } else {
-      return "Essa tarefa já foi feita."
+      return "This task has already been completed."
     }
   }
   
-  func addTask(file: File, task: String) {
+  func addTask(file: File, task: String) -> [String] {
     let taskToAdd = task + "\n"
     _ = file.append(text: taskToAdd)
+    
+    return getTasks(file)
   }
   
-  func deleteTask(index: Int, _ tasksFromFile: [String], _ file: File) {
+  func deleteTask(index: Int, _ tasksFromFile: [String], _ file: File) -> String {
+    if index >= tasksFromFile.count {
+      return "Index out of range"
+    }
     
     var tasks = tasksFromFile
 
-    tasks.remove(at: index)
+    let removedTask = tasks.remove(at: index)
     
     let stringTasks = tasks.joined(separator: "\n")
     
     file.overwrite(text: stringTasks)
+    
+    return removedTask
     
   }
   

@@ -2,7 +2,7 @@ import Foundation
 
 class MockTask {
   
-  func mockGetTasks(_ file: MockFile) -> [String] {
+  func getTasks(_ file: MockFile) -> [String] {
     let tasksArray = [
       "task 1",
       "task 2",
@@ -23,7 +23,7 @@ class MockTask {
     }
   }
   
-  func mockFinishTask(index: Int, _ tasksFromFile: [String], _ file: MockFile) -> String {
+  func finishTask(index: Int, _ tasksFromFile: [String], _ file: MockFile) -> String {
     if index >= tasksFromFile.count {
       return "Index out of range"
     }
@@ -42,5 +42,25 @@ class MockTask {
     } else {
       return "Essa tarefa já foi feita."
     }
+  }
+  
+  func addTask(file: MockFile, task: String) -> [String] {
+    var tasks = getTasks(file)
+    tasks.append(task)
+    
+    return tasks
+  }
+  
+  func deleteTask(index: Int, _ tasksFromFile: [String], _ file: MockFile) -> String {
+    if index >= tasksFromFile.count {
+      return "Index out of range"
+    }
+    
+    var tasks = tasksFromFile
+
+    let removedTask = tasks.remove(at: index)
+    
+    return removedTask
+    
   }
 }

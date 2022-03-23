@@ -19,7 +19,7 @@ struct Taskinator: ParsableCommand {
     let tasks = task.getTasks(file)
 
     if self.add != nil {
-      task.addTask(file: file, task: self.add!)
+      _ = task.addTask(file: file, task: self.add!)
     }
     
     if self.finish != nil {
@@ -28,7 +28,7 @@ struct Taskinator: ParsableCommand {
     }
     
     if self.delete != nil {
-      task.deleteTask(index: self.delete!, tasks, file)
+      _ = task.deleteTask(index: self.delete!, tasks, file)
     }
     
     let updatedTasks = task.getTasks(file)
