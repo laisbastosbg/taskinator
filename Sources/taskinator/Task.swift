@@ -29,31 +29,8 @@ class Task {
   }
   
   func showTasks(_ tasks: [String]) -> Void {
-    let asciiArt = """
-             /                /|
-            /                / |
-           /                /  |
-          /_______________ /   |
-         | ______________ |    |
-         ||              ||    |
-         ||  Taskinator  ||    |
-         ||              ||    |
-         ||______________||    |
-         |                |   /
-        /|   _________    |  /
-       / |  (_________)   | /
-       ( |________________|/
-        \\
-    .=======================.
-    | ::::::::::::::::  ::: |
-    | ::::::::::::::[]  ::: |
-    |   -----------     ::: |
-    `-----------------------'
-    """
-    print(asciiArt)
     print("\n")
     for (i, task) in tasks.enumerated() {
-      print("\t", terminator: "")
       if(isTaskFinished(task)) {
         var finishedTask = task
         finishedTask.remove(at: finishedTask.startIndex)
@@ -61,9 +38,7 @@ class Task {
       } else {
         print("\(i). \(task)")
       }
-      
     }
-    
     print("\n")
   }
   
