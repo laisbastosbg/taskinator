@@ -113,4 +113,10 @@ class Task {
     
   }
   
+  func deleteAllTasks(_ file: File) {
+    
+    file.overwrite(text: "")
+    
+  }
+  
 }

@@ -12,11 +12,18 @@ struct Taskinator: ParsableCommand {
   @Option(name: .shortAndLong, help: "marks task as done (by index)")
   var finish: Int?
   
+  @Flag(name: .shortAndLong, help: "Delete all tasks")
+  var clear = false
+  
   func run() throws {
     let file = File(fileName: "tasks.txt")
     let task = Task()
     
     let tasks = task.getTasks(file)
+    
+    if self.clear {
+      task.deleteAllTasks(file)
+    }
 
     if self.add != nil {
       _ = task.addTask(file: file, task: self.add!)
@@ -34,6 +41,7 @@ struct Taskinator: ParsableCommand {
     let updatedTasks = task.getTasks(file)
     
     task.showTasks(updatedTasks)
+    //print(delete!)
     
   }
 }
