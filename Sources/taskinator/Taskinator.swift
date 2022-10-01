@@ -3,16 +3,16 @@ import ArgumentParser
 
 struct Taskinator: ParsableCommand {
   
-  @Option(name: .shortAndLong, help: "adds a task")
+  @Option(name: .shortAndLong, help: "adiciona uma atividade")
   var add: String?
   
-  @Option(name: .shortAndLong, help: "deletes a task (by index)")
+  @Option(name: .shortAndLong, help: "deleta uma atividade)")
   var delete: Int?
   
-  @Option(name: .shortAndLong, help: "marks task as done (by index)")
+  @Option(name: .shortAndLong, help: "Marca atividade como feita")
   var finish: Int?
   
-  @Flag(name: .shortAndLong, help: "Delete all tasks")
+  @Flag(name: .shortAndLong, help: "Deleta todas as atividades")
   var clear = false
   
   func run() throws {

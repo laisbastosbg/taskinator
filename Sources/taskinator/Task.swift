@@ -60,7 +60,7 @@ class Task {
       file.overwrite(text: stringTasks)
       return "ok"
     } else {
-      return "This task has already been completed."
+      return "Essa atividade ja foi completada"
     }
   }
   
@@ -73,7 +73,7 @@ class Task {
   
   func deleteTask(index: Int, _ tasksFromFile: [String], _ file: File) -> String {
     if index >= tasksFromFile.count {
-      return "Index out of range"
+      return "Index fora de range"
     }
     
     var tasks = tasksFromFile
