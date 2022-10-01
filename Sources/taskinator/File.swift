@@ -24,7 +24,7 @@ class File {
         _ = try fileManager.createDirectory(at: programFolderURL, withIntermediateDirectories: true, attributes: nil)
         fileManager.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
       } catch {
-        print("Could not create program folder")
+        print("Não foi possivel criar uma pasta para o projeto")
       }
     }
     
@@ -36,7 +36,7 @@ class File {
       let tasks = try String(contentsOf: self.fileURL)
       return tasks
     } catch {
-      return "Unable to read file content"
+      return "Não é possível ler o conteúdo do arquivo"
     }
   }
   
@@ -49,7 +49,7 @@ class File {
       try content.write(to: fileURL, atomically: true, encoding: .utf8)
       return content
     } catch {
-      return "Unable to append content to file"
+      return "Não é possivel anexar o conteúdo a pasta"
     }
   }
   
@@ -57,7 +57,7 @@ class File {
     do {
       try text.write(to: fileURL, atomically: true, encoding: .utf8)
     } catch {
-      print("Unable to overwrite file")
+      print("Não é possivel sobrescrever")
     }
   }
 }
