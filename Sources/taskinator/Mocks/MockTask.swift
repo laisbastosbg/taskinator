@@ -40,7 +40,7 @@ class MockTask {
       
       return "ok"
     } else {
-      return "Essa tarefa já foi feita."
+      return "This task has already been completed."
     }
   }
   
